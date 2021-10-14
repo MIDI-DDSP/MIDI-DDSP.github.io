@@ -1,0 +1,1007 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.5"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/github.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <title>&#34;MIDI-DDSP: Detailed Control of Musical Performance via Hierarchical Modeling&#34; </title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header role="banner">
+
+
+    </header>
+
+
+    <main role="main">
+
+        <h1 id="title">MIDI-DDSP: Detailed Control of Musical Performance via Hierarchical Modeling</h1>
+
+        <h2 id="paper">Main Paper</h2>
+
+        <a href="https://openreview.net/pdf?id=UseMOjWENv">https://openreview.net/pdf?id=UseMOjWENv</a>
+        <p>We will make our code, including the reproduction of human adjustments in samples available in the near
+            future.</p>
+
+        <h2 id="contents">Contents</h2>
+
+        <a href="#overview"><p>Overview</p></a>
+        <a href="#human-adjust-demo"><p>Fine Grained Control (Figure 2)</p></a>
+        <a href="#coconet-gen"><p>Full End-to-End Generation (Figure 6)</p></a>
+        <a href="#dataset"><p>Dataset</p></a>
+        <a href="#violin-midi-adjust"><p>Performance Synthesis & Adjustment</p></a>
+        <a href="#midi-synthesis"><p>MIDI Synthesis</p></a>
+        <a href="#bach-quartet"><p>Bach Quartet Synthesis</p></a>
+        <a href="#note_expression_control"><p>Note Expression Control (Figure 4, 8, 9, and more)</p></a>
+        <a href="#listening-test"><p>Listening Test (Figure 5, 7)</p></a>
+        <a href="gan_improvement.html"><p>Improvement of GAN (Figure 12)</p></a>
+        <a href="#pitch-variant"><p>Pitch Variants in Synthesis</p></a>
+
+
+        <h2 id="overview">Overview</h2>
+
+        <p>
+            In this work, we introduce MIDI-DDSP, a hierarchical model of musical instruments that enables both
+            realistic neural audio synthesis and detailed user control.
+            We infer explicit interpretable features for note, performance, and synthesis level, and we build models at
+            each level to generate audio in a hierarchy.
+            Here, we present the audio example results for MIDI-DDSP.
+            For details about the system and architecture, please refer to the paper linked above.
+        </p>
+        <img src="pics/hero_diagram.png" alt="Model Architecture">
+
+
+        <h2 id="human-adjust-demo">Fine Grained Control</h2>
+
+        <p> The given performance on violin (top) is manipulated at all three levels (notes, expression, synthesis
+            parameters) to create a new realistic yet personalized performance (bottom).
+            An initial generation is automatically generated from the full MIDI-DDSP model (top),
+            and an expert musician adjusted notes (blue),
+            performance attributes (green), and low-level synthesis parameters (yellow) to craft a personalized
+            expression of a musical piece (bottom). </p>
+
+        <img src="pics/human-adjust-hero.png" alt="Fine Grained Control">
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Automatic Generation</th>
+                <th style="text-align: center">Adjusted by Human Expert</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/human-adjust-demo/original.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/human-adjust-demo/changed.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="coconet-gen">Full End-to-End Generation</h2>
+
+        <p> MIDI-DDSP can take note input from a score level Bach composition model CocoNet and automatically
+            synthesizing a Bach
+            quartet by generating explicit latent for each level in the hierarchy. </p>
+
+        <img src="pics/auto-gen-hero.png" alt="Full End-to-End Generation">
+
+        <p><br>CocoNet re-harmonization of Ode to Joy in <b>woodwinds set</b>.</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Mix</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_woodwind_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Soprano - Flute</th>
+                <th style="text-align: center">Alto - Oboe</th>
+                <th style="text-align: center">Tenor - Clarinet</th>
+                <th style="text-align: center">Bass - Bassoon</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_woodwind_set/Soprano.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_woodwind_set/Alto.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_woodwind_set/Tenor.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_woodwind_set/Bass.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p><br> Thanks to wide range of instrument recordings provided by the URMP dataset, we can also render CocoNet
+            re-harmonization of Ode to Joy in <b>string set</b>.
+        </p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Mix</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_string_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Soprano - Violin</th>
+                <th style="text-align: center">Alto - Violin</th>
+                <th style="text-align: center">Tenor - Viola</th>
+                <th style="text-align: center">Bass - Double Bass</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_string_set/Soprano.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_string_set/Alto.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_string_set/Tenor.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/coconet_generation/coconet_1_string_set/Bass.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="dataset">Dataset</h2>
+        <p> To demonstrate modeling a variety of instruments, we use the <a
+                href="#http://www2.ece.rochester.edu/projects/air/projects/URMP.html">URMP</a> dataset, a
+            publicly-available audio dataset containing monophonic solo performances of a variety of instruments.
+            Here we present a selection of the training data we used.
+            Also, the recordings in the URMP dataset are played by students, and the performance quality is
+            substantially lower compared to virtuoso datasets (<a
+                    href="#https://magenta.tensorflow.org/datasets/maestro">MAESTRO</a>) used in other work.
+            Typically, some recordings have bad intonation accuracy, which makes MIDI-DDSP also having intonation
+            accuracy problems in synthesis.
+            Here we also present some playings of the training data that are out of tune.
+        </p>
+
+        <img src="pics/urmp_dataset.png" alt="URMP Dataset">
+
+        <p>Training Set:</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/dataset_show/normal/AuSep_1_tpt_05_Entertainer_01.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/dataset_show/normal/AuSep_1_vn_12_Spring_01.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/dataset_show/normal/AuSep_4_bn_28_Fugue_01.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Training set playing out of tune:</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/dataset_show/badcase/AuSep_1_vn_01_Jupiter_01.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/dataset_show/badcase/AuSep_2_tbn_22_Rejouissance_02.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/dataset_show/badcase/AuSep_4_db_35_Rondeau_01.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="violin-midi-adjust">Performance Synthesis & Adjustment</h2>
+
+        <p>MIDI-DDSP enables detailed control, especially performance level control.
+            Here we present given a violin MIDI score, how a human expert violin performer
+            will adjust the automatic generation to makes it to the way an expert will perform.</p>
+
+        <!--        todo: video of adjustment process?-->
+
+        <img width="60%" height="60%" src="pics/human-adjust.PNG" alt="Adjust Process">
+
+
+        <p>Viva La Vida:</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Automatic Generation</th>
+                <th style="text-align: center">After Adjustment</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/viva_la_vida.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/viva_la_vida_0910_adjusted.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Phantom:</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Automatic Generation</th>
+                <th style="text-align: center">After Adjustment</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/phantom.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/phantom_0910_adjusted.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="midi-synthesis">Automatic MIDI Synthesis</h2>
+
+        <img width="60%" height="60%" src="pics/midi_synth.PNG" alt="Automatic MIDI Synthesis">
+
+        <p>Here we present the automatic score-to-audio synthesis of MIDI-DDSP on generic MIDI input.
+            Learned to perform from data, MIDI-DDSP can generate idiomatic details of human performance.
+            For example, in some syntheses, breathing sounds between notes are generated.
+        </p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Game of Thrones - Cello</th>
+                <th style="text-align: center">La Vie En Rose - Trumpet</th>
+                <th style="text-align: center">Viva La Vida - Violin</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/Game_of_Thrones_Solo_Cello.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/la_vie_en_rose.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/viva_la_vida.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Beauty and the Beast - Flute</th>
+                <th style="text-align: center">Cannon in D - Cello</th>
+                <th style="text-align: center">Phantom - Violin</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/Beauty_and_the_beast-Flute.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/Cello_solo_Canon_In_D.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/automatic_midi_synthesis-finished/phantom.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="bach-quartet">Bach Quartet Synthesis</h2>
+        <p> Here we present MIDI-DDSP automatic Bach quartet synthesis by taking note input from <b>Bach Chorales</b>.
+            Here, we present three types of instrument ensemble: string set, brasswind set and woodwind set.
+            The volume of four parts are mixed with different gains:
+            </br> String set: S +2dB, A +2dB, T -1dB, and B -1dB,
+            </br> Woodwind set: S +2dB, A +2dB, T +5.6dB, and B 2.9dB,
+            </br> Brasswind set: S +1.5dB, A +1.2dB, T 0dB, and B 1.8dB,
+        </p>
+
+
+        <p>BWV 227.1 - String Set</p>
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Ensemble</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_string_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Soprano - Violin</th>
+                <th style="text-align: center">Alto - Violin</th>
+                <th style="text-align: center">Tenor - Cello</th>
+                <th style="text-align: center">Bass - Double Bass</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_string_set/Soprano.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_string_set/Alto.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_string_set/Tenor.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_string_set/Bass.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>BWV 227.1 - Brasswind Set</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Ensemble</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_brasswind_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Soprano - Trumpet</th>
+                <th style="text-align: center">Alto - French Horn</th>
+                <th style="text-align: center">Tenor - Trombone</th>
+                <th style="text-align: center">Bass - Tuba</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_brasswind_set/Soprano.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_brasswind_set/Alto.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_brasswind_set/Tenor.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_brasswind_set/Bass.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>BWV 227.1 - Woodwind Set</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Ensemble</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_woodwind_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Soprano - Flute</th>
+                <th style="text-align: center">Alto - Oboe</th>
+                <th style="text-align: center">Tenor - Clarinet</th>
+                <th style="text-align: center">Bass - Bassoon</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_woodwind_set/Soprano.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_woodwind_set/Alto.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_woodwind_set/Tenor.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv227.1_woodwind_set/Bass.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>More Bach Quartet</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">BWV165.6 - String Set</th>
+                <th style="text-align: center">BWV178.7 - String Set</th>
+                <th style="text-align: center">BWV180.7 - String Set</th>
+                <th style="text-align: center">BWV245.14 - String Set</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv165.6_string_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv178.7_string_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv180.7_string_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/bach_midi_synthesis/bwv245.14_string_set/mix.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="note_expression_control">Note Expression Control</h2>
+
+        <img src="pics/control-diagram-three-row-no-frame.png" alt="Note Expression Control">
+
+        <p>In MIDI-DDSP, manipulating note-level expression can effectively change the synthesis-level quantities. We
+            show by taking a test-set sample (middle row) and adjusting each expression control value to lowest (bottom
+            row) and highest (upper row), how each synthesis quantities (rightmost legend) would change. The dashed gray
+            line in each plot indicates the note boundary.</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Original Sample</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/original.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Volume - Low</th>
+                <th style="text-align: center">Volume - High</th>
+                <th style="text-align: center">Vol. Fluc. - Low</th>
+                <th style="text-align: center">Vol. Fluc. - High</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/amplitude_mean_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/amplitude_mean_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/amplitude_std_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/amplitude_std_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Vol. Peak Pos. - Low</th>
+                <th style="text-align: center">Vol. Peak Pos. - High</th>
+                <th style="text-align: center">Vibrato - Low</th>
+                <th style="text-align: center">Vibrato - High</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/amplitudes_max_pos_0.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/amplitudes_max_pos_2.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/vibrato_extend_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/vibrato_extend_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Brightness - Low</th>
+                <th style="text-align: center">Brightness - High</th>
+                <th style="text-align: center">Attack Noise - Low</th>
+                <th style="text-align: center">Attack Noise - High</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/brightness_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/brightness_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/attack_level_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_absolute_control_paper_figure/attack_level_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>More details about note expression controls including Figure 8, 9 and more can be found
+            <a href="note_expression_control.html">here</a>.</p>
+
+
+        <h2 id="listening-test">Listening Test</h2>
+
+        <p>The listening test results on Test-set MIDI Synthesis. All the audio samples below are generated with only
+            MIDI from test-set as input.
+            MIDI-DDSP synthesizes more realistic audio than a prior work MIDI2Params, and two concatenative
+            samplers.</p>
+
+        <img width="50%" height="50%" src="pics/listening-test-table.png" alt="Listening Test Bar Plot">
+
+        <img src="pics/listening-test-spec-big.png" alt="Listening Test">
+
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Ground-truth</th>
+                <th style="text-align: center">DDSP Inference</th>
+                <th style="text-align: center">MIDI-DDSP</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/listening-test-spec-show/ground-truth.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/listening-test-spec-show/ddsp_inference.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/listening-test-spec-show/midi-ddsp.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Ableton</th>
+                <th style="text-align: center">MIDI2Params</th>
+                <th style="text-align: center">FluidSynth</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/listening-test-spec-show/ableton.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/listening-test-spec-show/midi2params.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/listening-test-spec-show/fluidsynth.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>For access to all the samples used in listening test, please check:
+            <a href="https://midi-ddsp.github.io/violin_listening_test.zip">https://midi-ddsp.github.io/violin_listening_test.zip</a>
+        </p>
+
+        <p>For test-set generation of all other instruments, please check:
+            <a href="https://midi-ddsp.github.io/violin_listening_test.zip">https://midi-ddsp.github.io/violin_listening_test.zip</a>
+        </p>
+
+
+        <a href="gan_improvement.html"><h2>Improvement of GAN</h2></a>
+
+        <p>Please check <a href="gan_improvement.html">here</a> improvement of GAN in synthesis quality.</p>
+
+        <h2 id="pitch-variant">Pitch Variants in Synthesis</h2>
+
+        <p>Due to intonation problem in some recordings in the dataset, MIDI-DDSP will also suffer from inaccurate
+            intonation in synthesized audio. Also because the pitch generation in MIDI-DDSP is an auto-regressive
+            sampling process, each time the pitch can be different and MIDI-DDSP would accurately recreate the
+            intonation problems in the dataset. Here we present some samples that has varying pitch accuracy. We plan to
+            address this problem in the future works.</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">CocoNet Generation</th>
+                <th style="text-align: center">La Vie En Rose</th>
+                <th style="text-align: center">Phantom</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/intonation_problem_samples/coconet.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/intonation_problem_samples/la_vie_en_rose.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/intonation_problem_samples/phantom.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Open Source Image Attribution</h2>
+        <p>The icons used throughout the paper and webpages are used under the Creative Commons license via the Noun
+            Project. We
+            gratefully acknowledge the following creators of these images:
+            <br>Equalizer by fahmionline from the Noun Project
+            <br>composer by Magicon from the Noun Project
+            <br>Music Note by Randomhero from the Noun Project
+            <br>composer by Amethyst Studio from the Noun Project
+            <br>Violine by Symbolon from the Noun Project
+            <br>Trumpet by Symbolon from the Noun Project
+            <br>Audio by cataicon from the Noun Project.
+            <br>bassoon by Symbolon from the Noun Project.
+            <br>Clarinet by Symbolon from the Noun Project.
+            <br>composer by Pham Duy Phuong Hung from the Noun Project.
+            <br>Flute by Symbolon from the Noun Project.
+            <br>Neural Network by Ian Rahmadi Kurniawan from the Noun Project.
+            <br>oboe by Symbolon from the Noun Project.
+            <br>Synthesizer by Jino from the Noun Project.
+            <br>Violin by Olena Panasovska from the Noun Project.
+            <br>Violinist by Luis Prado from the Noun Project.
+        </p>
+
+    </main>
+</div>
+</body>
+</html>

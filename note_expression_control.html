@@ -1,0 +1,692 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.5"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/github.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <title>&#34;MIDI-DDSP: Detailed Control of Musical Performance via Hierarchical Modeling&#34; </title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header role="banner">
+
+
+    </header>
+
+
+    <main role="main">
+
+        <a href="index.html"><h1>Back to Main Page</h1></a>
+
+        <h1 id="title">Note Expression Control</h1>
+
+        <h2 id="table-of-content">Table of Content</h2>
+        <a href="#relative-control"><p>Effect of Modifying Each Note Expression Control</p></a>
+        <a href="#common-expressions"><p>Controlling Common Articulations and Expressions</p></a>
+        <a href="#correlation"><p>Pearson Correlation of Controls (Table 2, 6)</p></a>
+        <a href="#box-plot"><p>Violin Plot of Note Expression Adjustment Outputs</p></a>
+
+        <p>In this section we present qualitative results and quantitative results showing the effect of the note
+            expression control parameters.</p>
+
+
+        <h3 id="relative-control">Modification</h3>
+
+        <p>The effect of modifying note expression on an existing sample. The number indicates the amount of
+            modification to the note expression control where (+0) is the original sample. Upper figure shows the
+            spectrogram of generations, and the bottom figure shows the amplitude of the generations. The cartoon on the
+            side indicates how the modified feature would change the synthesis parameters. The gray dash line in the
+            bottom figure indicates the note boundaries.</p>
+
+        <h3>X axis: Volume, Y axis: Volume Fluctuation</h3>
+        <p>Spectrogram</p>
+        <img width="100%" height="100%"
+             src="samples/urmp_violin_relative_grid_control/relative-control-grid-1.PNG"
+             alt="">
+        <p>Amplitudes</p>
+        <img width="100%" height="100%"
+             src="samples/urmp_violin_relative_grid_control/relative-control-grid-2.PNG"
+             alt="">
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_0.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_1.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_2.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_3.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_4.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_5.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_6.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_7.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_8.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_9.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_10.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_11.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_12.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_13.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_14.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_15.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_16.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_17.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_18.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_19.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_20.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_21.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_22.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_23.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/grid_amplitude_mean_amplitude_std_24.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <h3>Volume Peak Position</h3>
+        <img width="100%" height="100%" src="samples/urmp_violin_relative_grid_control/relative-control-grid-3.PNG"
+             alt="">
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/amplitudes_max_pos_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/amplitudes_max_pos_1.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/amplitudes_max_pos_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/amplitudes_max_pos_3.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/amplitudes_max_pos_4.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Vibrato</h3>
+        <img width="100%" height="100%" src="samples/urmp_violin_relative_grid_control/relative-control-grid-4.PNG"
+             alt="">
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/vibrato_extend_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/vibrato_extend_1.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/vibrato_extend_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/vibrato_extend_3.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/vibrato_extend_4.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Brightness</h3>
+        <img width="100%" height="100%" src="samples/urmp_violin_relative_grid_control/relative-control-grid-5.PNG"
+             alt="">
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/brightness_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/brightness_1.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/brightness_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/brightness_3.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/brightness_4.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Attack Noise</h3>
+        <img width="100%" height="100%" src="samples/urmp_violin_relative_grid_control/relative-control-grid-6.PNG"
+             alt="">
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+                <th style="text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/attack_level_0.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/attack_level_1.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/attack_level_2.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/attack_level_3.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/urmp_violin_relative_grid_control/attack_level_4.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="common-expressions">Controlling common articulations and expressions</h2>
+
+        <p></p>
+        <img width="100%" height="100%"
+             src="samples/expression_demo/expression_demo_urmp_violin.png"
+             alt="">
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Ground-truth</th>
+                <th style="text-align: center">Reconstruction</th>
+                <th style="text-align: center">Vibrato</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/Ground-truth.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/Reconstruction.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/Vibrato.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">None Vibrato</th>
+                <th style="text-align: center">Crescendo</th>
+                <th style="text-align: center">Decrescendo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/None%20Vibrato.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/Crescendo.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/Decrescendo.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Staccato</th>
+                <th style="text-align: center">Strong Attack</th>
+                <th style="text-align: center">Weak Attack</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/Staccato.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/Strong%20Attack.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/expression_demo/None%20Attack.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <h2 id="correlation">Pearson Correlation of Controls</h2>
+        <img width="100%" height="100%"
+             src="samples/control_metric_plot/control_metric_plot_accumulative_statistics.png"
+             alt="">
+
+        <h3 id="box-plot">Box Plot of Control Effects</h3>
+        <h3>Violin</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/violin.png"
+             alt="">
+
+        <h3>Viola</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/viola.png"
+             alt="">
+
+        <h3>Cello</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/cello.png"
+             alt="">
+
+        <h3>Double Bass</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/double%20bass.png"
+             alt="">
+
+        <h3>Flute</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/flute.png"
+             alt="">
+
+        <h3>Oboe</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/oboe.png"
+             alt="">
+
+        <h3>Clarinet</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/clarinet.png"
+             alt="">
+
+        <h3>Saxophone</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/saxophone.png"
+             alt="">
+
+        <h3>Bassoon</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/bassoon.png"
+             alt="">
+
+        <h3>Trumpet</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/trumpet.png"
+             alt="">
+
+        <h3>French Horn</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/horn.png"
+             alt="">
+
+        <h3>Trombone</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/trombone.png"
+             alt="">
+
+        <h3>Tuba</h3>
+        <img width="100%" height="100%" src="samples/control_metric_plot/tuba.png"
+             alt="">
+
+    </main>
+</div>
+</body>
+</html>

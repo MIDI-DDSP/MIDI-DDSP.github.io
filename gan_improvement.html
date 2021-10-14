@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.5"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/github.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <title>&#34;MIDI-DDSP: detailed control of musical  performance via hierarchical modeling&#34; </title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header role="banner">
+
+
+    </header>
+
+
+    <main role="main">
+
+        <a href="../DDSP_project_demo.html"><h1>Back to Main Page</h1></a>
+
+        <h1 id="title">GAN Improvement</h1>
+
+
+        <p>Here we present the improvement between without and with GAN in the proposed model.
+            Without GAN, the model will suffer from "over-smoothing" problem,
+            where the model generates uniform and smoothed harmonic distribution and noise magnitudes over the whole
+            note.
+            See below for an intuitive evaluation.</p>
+
+
+        <p>Ground-truth Harmonic Distribution</p>
+        <img width="100%" height="100%" src="samples/GAN_improvement/ground_truth_hd.png"
+             alt="">
+
+        <p>Predicted Harmonic Distribution without GAN</p>
+        <img width="100%" height="100%" src="samples/GAN_improvement/without_gan_hd.png"
+             alt="">
+
+        <p>With the introduction of adversarial training,
+            the proposed model overcomes the over-smoothing problem potentially caused by one-to-many mapping.</p>
+
+        <p>Predicted Harmonic Distribution with GAN</p>
+        <img width="100%" height="100%" src="samples/GAN_improvement/with_gan_hd.png"
+             alt="">
+
+        <p>One can also hear the over smoothing problem from predicted samples:</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">Ground-truth</th>
+                <th style="text-align: center">With GAN</th>
+                <th style="text-align: center">Without GAN</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/GAN_improvement/ground_truth.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/GAN_improvement/without_GAN.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/GAN_improvement/with_gan.wav"
+                                autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Ground-truth</p>
+        <img width="50%" height="50%" src="samples/GAN_improvement/ground_truth_spec.png"
+             alt="">
+
+        <p>Without GAN</p>
+        <img width="50%" height="50%" src="samples/GAN_improvement/without_GAN_spec.png"
+             alt="">
+
+        <p>With GAN</p>
+        <img width="50%" height="50%" src="samples/GAN_improvement/with_GAN_spec.png"
+             alt="">
+
+
+        <p>Similar effects can also be seen in noise magnitudes:</p>
+
+        <p>Ground-truth Noise Magnitudes</p>
+        <img width="100%" height="100%" src="samples/GAN_improvement/ground_truth_noise.png"
+             alt="">
+
+        <p>Predicted Noise Magnitudes without GAN</p>
+        <img width="100%" height="100%" src="samples/GAN_improvement/without_gan_noise.png"
+             alt="">
+
+        <p>Predicted Noise Magnitudes with GAN</p>
+        <img width="100%" height="100%" src="samples/GAN_improvement/with_gan_noise.png"
+             alt="">
+
+
+    </main>
+</div>
+</body>
+</html>
