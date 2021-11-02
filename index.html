@@ -43,6 +43,7 @@
         <a href="#bach-quartet"><p>Bach Quartet Synthesis</p></a>
         <a href="#note_expression_control"><p>Note Expression Control (Figure 4, 8, 9, and more)</p></a>
         <a href="#listening-test"><p>Listening Test (Figure 5, 7)</p></a>
+        <a href="#user-experience"><p>An Example User Experience</p></a>
         <a href="gan_improvement.html"><p>Improvement of GAN (Figure 12)</p></a>
         <a href="#pitch-variant"><p>Pitch Variants in Synthesis</p></a>
 
@@ -414,7 +415,8 @@
                 </td>
                 <td style="text-align: center">
                     <audio controls="controls" style="width: 240px">
-                        <source src="samples/automatic_midi_synthesis-finished/pirates_of_the_caribbean_adjusted.wav" autoplay/>
+                        <source src="samples/automatic_midi_synthesis-finished/pirates_of_the_caribbean_adjusted.wav"
+                                autoplay/>
                         Your browser does not support the audio element.
                     </audio>
                 </td>
@@ -429,7 +431,6 @@
             </tr>
             </tbody>
         </table>
-
 
 
         <h2 id="midi-synthesis">Automatic MIDI Synthesis</h2>
@@ -984,6 +985,167 @@
             <a href="https://github.com/MIDI-DDSP/MIDI-DDSP.github.io/blob/master/test_set_all_other_instruments.zip">https://github.com/MIDI-DDSP/MIDI-DDSP.github.io/blob/master/test_set_all_other_instruments.zip</a>
         </p>
 
+
+        <h2 id="user-experience">An Example User Experience</h2>
+
+        <p>This section presents a step-by-step user experience of an expert using and adjusting MIDI-DDSP to obtain
+            satisfied music performance. Specifically, the human expert as a violin player will iterate on adjusting
+            note expression controls, starting from what the expression generator predicts for a given piece.
+            Figure below shows the original music score "Viva La Vida" as input to MIDI-DDSP.</p>
+
+        <img src="samples/user_experience/score/Viva%20La%20Vida%20short%20-%201-1.png" alt="">
+        <img src="samples/user_experience/spec/viva_la_vida_short-1.png" alt="">
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/user_experience/audio/viva_la_vida_short-1.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>1. Design and Adjust Articulations</h3>
+
+        <p>The expert first designs the articulations of the piece based on automatic generation, marking up/down bow
+            and the tie between the note, indicating the connections between notes. The results are shown in
+            Figure below, where ties indicate the notes connected should be played as legato
+            (played consecutively) and should have less attack noise.
+
+            The expert adjusts the attack noise based on what the articulations designed. In here, the expert lowers the
+            attack noise of the legato notes. The expert first applies the adjustments to the notes. Then, the expert
+            fine-tuned the attack noise adjustments based on the synthesis result of the earlier adjustment.</p>
+
+        <img src="samples/user_experience/score/Viva%20La%20Vida%20short%20-%202-1.png" alt="">
+        <img src="samples/user_experience/spec/viva_la_vida_short-3.png" alt="">
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/user_experience/audio/viva_la_vida_short-3.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>2. Design and Adjust Fingering</h3>
+
+        <p>The expert designs the fingering based on one's knowledge and experience of violin performance. The results
+            are shown in below. The expert designs the first two measures of the piece to
+            be played on E string ("E- - - -..." mark), and assign the fingering of each note (numbers above the notes).
+            The choice of the string and the fingering of notes affects the brightness of the timbre.
+            That is, playing on the E string should have a brighter timbre, and playing on an open string
+            (fingering number "0") will have a brighter timbre compared to pressing the string (fingering number other
+            than "0").
+
+            The expert adjusts the notes' brightness based on the fingering design, based on the principle described
+            above. The expert will first apply an initial adjustment to the brightness, then fine-tune the number
+            according to the synthesis result.</p>
+
+        <img src="samples/user_experience/score/Viva%20La%20Vida%20short%20-%204-1.png" alt="">
+        <img src="samples/user_experience/spec/viva_la_vida_short-5.png" alt="">
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/user_experience/audio/viva_la_vida_short-5.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>3. Adjust Vibrato</h3>
+
+        <p>The expert adjusts the vibrato of each note. Longer notes will be adjusted to have more vibrato to match how
+            the expert would play the violin. Similarly, the expert first adjusts the note's vibrato based on the model
+            prediction and fine-tune the numbers based on the synthesis result. The synthesized audio is shown in Figure
+            below.</p>
+
+        <img src="samples/user_experience/spec/viva_la_vida_short-7.png" alt="">
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/user_experience/audio/viva_la_vida_short-7.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>4. Design Special Articulations</h3>
+
+        <p>The expert designs special articulations of the notes for artistic purposes. In this example, the expert
+            designed some notes to play as staccato. The results are shown in Figure below where
+            the purple dot above the notes indicates it to play as staccato.
+
+            To adjust notes to staccato, the volume fluctuation, volume peak position, and attack noise needs to be
+            adjusted from the original value. Specifically, the expert increases the volume fluctuation, decreases the
+            volume peak position, and increases attack noise. Similarly, the expert first adjusts the vibrato of the
+            note and fine-tune the numbers based on the synthesis result. In this step, the expert report that
+            decreasing vibrato can help generate better staccato notes.</p>
+
+        <img src="samples/user_experience/score/Viva%20La%20Vida%20short%20-%208-1.png" alt="">
+        <img src="samples/user_experience/spec/viva_la_vida_short-9.png" alt="">
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/user_experience/audio/viva_la_vida_short-9.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>5. Fine-tune the Piece</h3>
+
+        <p>After all designing and adjustments are made, if needed, the expert takes a final revision of the piece by
+            fine-tuning the expression controls of the notes. In this example, the expert does not fine-tune the piece
+            in the end as the audio synthesized by the previous step is good enough.</p>
 
         <a href="gan_improvement.html"><h2>Improvement of GAN</h2></a>
 
