@@ -5,7 +5,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBL2BT00VH"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
         gtag('config', 'G-BBL2BT00VH');
     </script>
@@ -1193,6 +1197,91 @@
                 <td style="text-align: center">
                     <audio controls="controls" style="width: 240px">
                         <source src="samples/intonation_problem_samples/phantom.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="loss-ablation">Training Loss Ablation</h2>
+
+        <p>Here we present the ablation experiment results on training loss of the synthesis generator.
+            We compare original <b>MIDI-DDSP</b> which trained on multi-scale spectral loss and GAN objective, with
+            <b>MIDI-DDSP params loss</b> and <b>MIDI-DDSP without GAN</b>.
+            <b>MIDI-DDSP params loss</b> is trained on a series of L1 and L2 loss on
+            synthesis parameters and GAN objective and GAN objective.
+            <b>MIDI-DDSP without GAN</b> is trained on only multi-scale spectral loss but no GAN objective.
+            In conclusion, <b>MIDI-DDSP params loss</b> has similar sound quality than <b>MIDI-DDSP</b>, while
+            <b>MIDI-DDSP without GAN</b> has notable worse sound quality.
+            <br> Full audio samples can be found here:
+            https://github.com/MIDI-DDSP/MIDI-DDSP.github.io/blob/master/eval_set_sample_for_loss_ablation.zip
+        </p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center">MIDI-DDSP</th>
+                <th style="text-align: center">MIDI-DDSP params loss</th>
+                <th style="text-align: center">MIDI-DDSP without GAN</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/loss_ablation_test/gan_loss_audio_loss_pred.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/loss_ablation_test/gan_loss_params_loss.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/loss_ablation_test/without_gan_loss_audio_loss_pred.wav" autoplay/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 id="expression-ablation">Note Expression Ablation</h2>
+
+        <p>Here we present the ablation experiment results on note expression to find out if the performance
+            quality improvement to MIDI2Params comes from the better/bigger model or the additional stage.
+            For that purpose, we trained a synthesis generator with the same loss and GAN
+            objective and uses the same hyperparameters as MIDI-DDSP. An audio sample of MIDI synthesis using this model
+            is presented below.
+
+            In conclusion, using only a synthesis generator without note expression can
+            generate performance audio almost as good as MIDI-DDSP. However, the model will occasionally
+            generate “dead-pan” notes without any expression (the note starts from 6s in the sample show below).
+            Thus, the performance improvement of MIDI-DDSP largely comes from using a
+            better/bigger model, namely a synthesis generator. However, the additional stage (note expression modeling)
+            makes the audio synthesis more robust and more importantly enables the user editing on performance level.
+
+            <br> Full audio samples can be found here:
+            https://github.com/MIDI-DDSP/MIDI-DDSP.github.io/blob/master/no_expression_experiment.zip
+        </p>
+
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: center"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align: center">
+                    <audio controls="controls" style="width: 240px">
+                        <source src="samples/no_expression/viva_la_vida_no_expression_dead_pan.wav" autoplay/>
                         Your browser does not support the audio element.
                     </audio>
                 </td>
