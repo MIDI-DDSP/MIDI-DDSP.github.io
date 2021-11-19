@@ -1207,11 +1207,13 @@
         <h2 id="loss-ablation">Training Loss Ablation</h2>
 
         <p>Here we present the ablation experiment results on training loss of the synthesis generator.
-            We compare original <b>MIDI-DDSP</b> which trained on multi-scale spectral loss and GAN objective, with
+            We compare original <b>MIDI-DDSP</b> which trained on cross-entropy loss on f0,
+            multi-scale spectral loss and GAN objective, with
             <b>MIDI-DDSP params loss</b> and <b>MIDI-DDSP without GAN</b>.
-            <b>MIDI-DDSP params loss</b> is trained on a series of L1 and L2 loss on
-            synthesis parameters and GAN objective and GAN objective.
-            <b>MIDI-DDSP without GAN</b> is trained on only multi-scale spectral loss but no GAN objective.
+            <b>MIDI-DDSP params loss</b> is trained on L1 loss on synthesis parameters other than f0 (amplitudes,
+            harmonic distribution and noise magnitudes), cross-entropy loss on f0 and GAN objective.
+            <b>MIDI-DDSP without GAN</b> is trained on only multi-scale spectral loss and cross-entropy loss on f0
+            but no GAN objective.
             In conclusion, <b>MIDI-DDSP params loss</b> has similar sound quality than <b>MIDI-DDSP</b>, while
             <b>MIDI-DDSP without GAN</b> has notable worse sound quality.
             <br> Full audio samples can be found here:
